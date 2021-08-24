@@ -5,11 +5,7 @@
  - Typescript
  - PixiJS
 
-## Getting Started
-
-To get a local copy up and running follow these simple steps.
-
-### Installation
+### Getting Started
 
 1. Clone the repo
    ```sh
