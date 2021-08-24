@@ -15,5 +15,4 @@ export class Ball {
         this.ball.endFill()
         Game.Stage.addChild(this.ball)
     }
-
 }

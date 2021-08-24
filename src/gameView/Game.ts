@@ -7,24 +7,22 @@ const paddleWidth: number = 150,
       appWidth: number = 800,
       appHeight: number = window.innerHeight,
       ballWidth: number = 10,
+      body: HTMLBodyElement = document.querySelector('body')!,
       style = new PIXI.TextStyle({
             fontFamily: 'Roboto',
             fill: ['#000'],
             fontSize: 32,
             fontWeight: "bold"
     })
-type Player = Paddle
-const body = document.querySelector('body')!
 
 let xSpeed: number = Math.floor(Math.random() * 8 - 4),
     ySpeed: number = 4,
     score: number = 0,
     topPaddle: Paddle,
     bottomPaddle: Paddle,
-    ball: Ball,
-    frames: any
+    ball: Ball
 
-export class Game{
+export class Game {
     public app: PIXI.Application
     static Stage: PIXI.Container
     static App: PIXI.Application
@@ -33,10 +31,9 @@ export class Game{
     static score: number
     static FinalScoreText: PIXI.Text
     static CurrentScoreText: PIXI.Text = new PIXI.Text(`${score}`, style)
-    static ActiveEntities: Array<Player> = []
 
     constructor() {
-    this.app = new PIXI.Application({
+        this.app = new PIXI.Application({
         width : appWidth,
         height: appHeight,
         backgroundColor: 0x1099bb,
@@ -45,23 +42,21 @@ export class Game{
         antialias: true
     })
     document.body.appendChild(this.app.view)
-    // CONSTANTS
     Game.Stage = this.app.stage
     Game.App = this.app
 
     Game.App.loader
         .add("https://i.ibb.co/4PXHM7B/paddle.png")
         .load(Game.setup.bind(this))
-
     }
 
     static setup(): void {
         // Top Paddle
         const texture = PIXI.Texture.from("https://i.postimg.cc/7PB6Tq0D/paddle.png")
-        topPaddle = new Paddle(texture, (appWidth / 2) - (paddleWidth / 2), 0, paddleWidth, paddleHeight)
+        topPaddle = new Paddle(texture, (appWidth / 2) - (paddleWidth / 2), 0)
 
         // Bottom Paddle
-        bottomPaddle = new Paddle(texture, (appWidth / 2) - (paddleWidth / 2), (appHeight) - paddleHeight, paddleWidth, paddleHeight)
+        bottomPaddle = new Paddle(texture, (appWidth / 2) - (paddleWidth / 2), (appHeight) - paddleHeight)
 
         // BALL
         ball = new Ball()

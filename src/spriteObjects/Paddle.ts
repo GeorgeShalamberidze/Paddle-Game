@@ -1,10 +1,9 @@
 import * as PIXI from 'pixi.js'
 import { Game } from '../gameView/Game'
 
-const paddleWidth: number = 150,
-      paddleHeight: number = 25,
-      appWidth: number = 800,
-      appHeight: number = window.innerHeight
+const appWidth: number = 800,
+    paddleWidth: number = 150,  
+    paddleHeight: number = 25
 
 export class Paddle{
     public paddle: PIXI.Sprite
@@ -12,12 +11,10 @@ export class Paddle{
         public txtr: any, 
         public posX: number,
         public posY: number,
-        public width: number,
-        public height: number
     ) {
         this.paddle = new PIXI.Sprite(txtr)
-        this.paddle.width = width
-        this.paddle.height = height
+        this.paddle.width = paddleWidth
+        this.paddle.height = paddleHeight
         this.paddle.position.set(posX, posY)
         Game.Stage.addChild(this.paddle)
     }   
